@@ -1,0 +1,183 @@
+<html>
+
+<head>
+<title>I Heart Humans</title>
+<script src="js/jquery.js"></script>
+	<script src="js/foundation.min.js"></script>
+	<script src="js/foundation/foundation.equalizer.js"></script>
+	<script src="js/foundation/foundation.topbar.js"></script>
+	<script src="js/foundation/foundation.offcanvas.js"></script>
+	<script src="js/modernizr.js"></script>
+	<script src="js/handlebars.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/history.js/1.8/bundled-uncompressed/html4+html5/dojo.history.js"></script>
+
+	<link media="all" type="text/css" rel="stylesheet" href="css/foundation.css">
+	<link media="all" type="text/css" rel="stylesheet" href="css/style.css">
+
+<!-- 132 232 188   ; 255 252 214    ;  59 48 255 ;  208 53 51   ;  255 214 91-->
+</head>
+<body  style="background:#d7d7d7"> 
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name"><a href="#"> I heart humans</a></li>
+    
+  </ul>
+</nav>
+
+<div class='large-12 title' style="">
+<h1 >
+I want to <a href="#">be inspired</a>
+</h1>
+
+</div>
+
+
+
+<div class ='content large-12' >
+
+</div>
+
+</div>
+<div class="clickbackground" style="display:none">
+<ul>
+<li><h1><a href="#" data-type='read'> be inspired </a></h1></li>
+ <li><h1><a href="#" data-type='do'> do in my community </a></h1></li>
+ <li><h1><a href="#" data-type='explore'> explore in and out of the museum</a></h1></li>
+ <li><h1><a href="#" data-type='share'>share with the world</a></h1></li>
+ </ul>
+</div>
+	<script>
+		$(document).foundation();
+		$(document).ready(function() {
+			
+			History.Adapter.bind(window, 'statechange', function() {
+			  routingUpdate();
+			});
+
+			$('.title h1 a').click(function(e){
+				e.preventDefault();
+				$('.clickbackground').toggle();
+			});
+			$('.clickbackground ul').click(function(e){
+				if(e.target !=this)return ;
+				$('.clickbackground ').toggle();
+			});
+
+			$('.clickbackground ul li').click(function(e){
+				if(e.target !=this)return ;
+				$('.clickbackground ').toggle();
+			});
+
+			//function to route stuff
+			$('.clickbackground ul li h1 a').click(function(e){
+				e.preventDefault();
+				var datatype=$(this).attr('data-type');
+				if(datatype=='do')
+					routingUpdate('do');
+				else if(datatype=='read')
+					routingUpdate('beinspired');
+				else if(datatype=='explore')
+					routingUpdate('explore');
+				else if(datatype=='share')
+					routingUpdate('share');
+			});
+
+
+			function routingFunction(){
+				var currentURL=window.location.href;
+				var routingArray=currentURL.split('#');
+				var routingString=routingArray[routingArray.length-1];
+				while(routingString[routingString.length-1]=='#')
+					routingString=routingString.substring(0,routingString.length,-1)
+				return routingString;
+			}
+
+
+
+		    function ajaxCallHandler(url,type,data,datatype,successfunction){
+		    	$.ajax({
+						url: url,
+						type: type,
+						data: data,
+						callback:'tag_slug',
+						dataType: datatype,
+						success: function(result, textStatus) {
+							data=result;
+
+							if(data.response=='fail'){
+					        	 window.location.href = data.redirect;
+							}	
+							successfunction(result,textStatus);
+						},
+						fail:function(){
+						}			
+					 	
+					 });
+		    }
+
+			function routingUpdate(currentURL){
+				alert(currentURL);
+				$('.clickbackground ').attr('display','none');
+				if(currentURL=='do'){
+
+				}
+
+				else if (currentURL=='beinspired'){
+						//This is read
+						//json call
+						//http://justice.openatlanta.net/tag/kids/?json=1
+						var input={'tag_slug':'kids'	};
+						var data=ajaxCallHandler('http://justice.openatlanta.net/api/get_tag_posts/','GET','jsonp',function(result,status){
+
+						});
+						console.log(data);
+				}
+				else if (currentURL.startsWith('article')){
+					
+				}
+				else if (currentURL=='explore'){
+
+				}
+				else if(currentURL=='share'){
+
+				}
+				else if(currentURL=='signin'){
+
+				}
+			}
+
+
+		});
+
+
+
+		function listPosts(data) {
+			console.log(data);
+			var Source = $("#read-template").html();
+			var Template = Handlebars.compile(Source);
+			var HTML = Template(data.posts);
+			$('#content').html(HTML);
+		} 
+
+	</script>
+
+	<script type="text" id='read-template'>
+
+          {{#each posts}}
+
+		<div class='large-6 small-10 large-offset-3' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px">
+			<img src="{{thumbnail}}" style='width:100%'> 
+				<h1 style="margin-left:20px">a{{title}}</h1>
+				<p style="large-10;margin-left:15px;">{{content}}</p>
+		</div>
+		{{/each}}
+	</script>
+
+
+
+	<script id='kids-posts' src="http://justice.openatlanta.net/tag/kids/?json=1&count=10&callback=listPosts"></script>
+</body>
+
+
+
+</html>
