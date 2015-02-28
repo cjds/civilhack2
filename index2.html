@@ -16,11 +16,11 @@
 
 <!-- 132 232 188   ; 255 252 214    ;  59 48 255 ;  208 53 51   ;  255 214 91-->
 </head>
-<body  style="background:#d7d7d7"> 
+<body  style="background:#d7d7d7">
 <nav class="top-bar">
   <ul class="title-area">
     <li class="name"><a href="#"> I heart humans</a></li>
-    
+
   </ul>
 </nav>
 
@@ -49,7 +49,7 @@ I want to <a href="#">be inspired</a>
 	<script>
 		$(document).foundation();
 		$(document).ready(function() {
-			
+
 			History.Adapter.bind(window, 'statechange', function() {
 			  routingUpdate();
 			});
@@ -106,12 +106,12 @@ I want to <a href="#">be inspired</a>
 
 							if(data.response=='fail'){
 					        	 window.location.href = data.redirect;
-							}	
+							}
 							successfunction(result,textStatus);
 						},
 						fail:function(){
-						}			
-					 	
+						}
+
 					 });
 		    }
 
@@ -133,7 +133,7 @@ I want to <a href="#">be inspired</a>
 						console.log(data);
 				}
 				else if (currentURL.startsWith('article')){
-					
+
 				}
 				else if (currentURL=='explore'){
 
@@ -157,7 +157,7 @@ I want to <a href="#">be inspired</a>
 			var Template = Handlebars.compile(Source);
 			var HTML = Template(data);
 			$('.content').html(HTML);
-		} 
+		}
 
 	</script>
 
@@ -165,7 +165,7 @@ I want to <a href="#">be inspired</a>
 
           {{#each posts}}
 		<div class='large-6 small-10 large-offset-3' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px">
-			<img src="{{thumbnail}}" style='width:100%'> 
+			<img src="{{thumbnail}}" style='width:100%'>
 				<h1 style="margin-left:20px">{{title}}</h1>
 				<p class='large-10' style=";margin-left:15px;">{{content}}</p>
 		</div>
