@@ -152,11 +152,11 @@ I want to <a href="#">be inspired</a>
 
 
 		function listPosts(data) {
-			console.log(data);
+			console.log(data.posts);
 			var Source = $("#read-template").html();
 			var Template = Handlebars.compile(Source);
-			var HTML = Template(data.posts);
-			$('#content').html(HTML);
+			var HTML = Template(data);
+			$('.content').html(HTML);
 		} 
 
 	</script>
@@ -164,11 +164,10 @@ I want to <a href="#">be inspired</a>
 	<script type="text" id='read-template'>
 
           {{#each posts}}
-
 		<div class='large-6 small-10 large-offset-3' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px">
 			<img src="{{thumbnail}}" style='width:100%'> 
-				<h1 style="margin-left:20px">a{{title}}</h1>
-				<p style="large-10;margin-left:15px;">{{content}}</p>
+				<h1 style="margin-left:20px">{{title}}</h1>
+				<p class='large-10' style=";margin-left:15px;">{{content}}</p>
 		</div>
 		{{/each}}
 	</script>
