@@ -17,18 +17,13 @@
 <!-- 132 232 188   ; 255 252 214    ;  59 48 255 ;  208 53 51   ;  255 214 91-->
 </head>
 <body  style="background:#d7d7d7">
-<nav class="top-bar">
-  <ul class="title-area">
-    <li class="name"><a href="#"> I heart humans</a></li>
 
-  </ul>
-</nav>
-
+	
 <div class='large-12 title' style="">
 <h1 >
 I want to <a href="#">be inspired</a>
 </h1>
-
+<img src='images/CCHR_LOGO_01.png' style="width:50px;height:50px;float:right;z-index:9999;margin-top:-70px;margin-right:40px">    
 </div>
 
 
@@ -42,7 +37,7 @@ I want to <a href="#">be inspired</a>
 <div class="clickbackground" style="display:none">
 <ul>
 <li><h1><a href="#" data-type='read'> be inspired </a></h1></li>
- <li><h1><a href="#" data-type='do'> do in my community </a></h1></li>
+ <li><h1><a href="#" data-type='do'> make an impact </a></h1></li>
  <li><h1><a href="#" data-type='explore'> explore in and out of the museum</a></h1></li>
  <li><h1><a href="#" data-type='share'>share with the world</a></h1></li>
  </ul>
@@ -89,7 +84,7 @@ I want to <a href="#">be inspired</a>
 					titleUpdate('share with the world');
 					routingUpdate('share');
 				}
-			});
+			}); 
 
 
 			function routingFunction(){
@@ -144,6 +139,10 @@ I want to <a href="#">be inspired</a>
 				}
 				else if (currentURL=='explore'){
 
+			var Source = $("#explore-template").html();
+			var Template = Handlebars.compile(Source);
+			var HTML = Template(listOfShelters);
+			$('.content').html(HTML);
 				}
 				else if(currentURL=='share'){
 					var Source = $("#share-template").html();
@@ -217,7 +216,7 @@ I want to <a href="#">be inspired</a>
 		</div>
 		<div class='columns' />
 	</script>
-	<script id='kids-posts' src="http://justice.openatlanta.net/tag/kids/?json=1&count=10&callback=listPosts"></script>
+	<script id='kids-posts' src="http://justice.openatlanta.net/tag/race-equality/?json=1&count=10&callback=listPosts"></script>
 </body>
 
 

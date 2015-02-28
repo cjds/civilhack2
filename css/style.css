@@ -4,8 +4,8 @@ nav.top-bar li{
 }
 
 div.title{
-  background:rgb(132,232,188);
-  /*background:rgb(255,158,27);*/
+  /*background:rgb(132,232,188);*/
+  background:rgb(255,158,27);
   min-height: 100px;
 
 }
