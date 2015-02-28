@@ -16,11 +16,11 @@
 
 <!-- 132 232 188   ; 255 252 214    ;  59 48 255 ;  208 53 51   ;  255 214 91-->
 </head>
-<body  style="background:#d7d7d7"> 
+<body  style="background:#d7d7d7">
 <nav class="top-bar">
   <ul class="title-area">
     <li class="name"><a href="#"> I heart humans</a></li>
-    
+
   </ul>
 </nav>
 
@@ -49,7 +49,7 @@ I want to <a href="#">be inspired</a>
 	<script>
 		$(document).foundation();
 		$(document).ready(function() {
-			
+
 			History.Adapter.bind(window, 'statechange', function() {
 			  routingUpdate();
 			});
@@ -116,12 +116,12 @@ I want to <a href="#">be inspired</a>
 
 							if(data.response=='fail'){
 					        	 window.location.href = data.redirect;
-							}	
+							}
 							successfunction(result,textStatus);
 						},
 						fail:function(){
-						}			
-					 	
+						}
+
 					 });
 		    }
 
@@ -137,7 +137,7 @@ I want to <a href="#">be inspired</a>
 						listPosts(blogData);
 				}
 				else if (currentURL.startsWith('article')){
-					
+
 				}
 				else if (currentURL=='explore'){
 
@@ -161,7 +161,7 @@ I want to <a href="#">be inspired</a>
 			var Template = Handlebars.compile(Source);
 			var HTML = Template(data);
 			$('.content').html(HTML);
-		} 
+		}
 
 	</script>
 
