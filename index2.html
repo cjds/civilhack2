@@ -72,14 +72,22 @@ I want to <a href="#">be inspired</a>
 			$('.clickbackground ul li h1 a').click(function(e){
 				e.preventDefault();
 				var datatype=$(this).attr('data-type');
-				if(datatype=='do')
+				if(datatype=='do'){
+					titleUpdate('do in my community');
 					routingUpdate('do');
-				else if(datatype=='read')
+				}
+				else if(datatype=='read'){
+					titleUpdate('be inspired');
 					routingUpdate('beinspired');
-				else if(datatype=='explore')
+				}
+				else if(datatype=='explore'){
+					titleUpdate('explore in and out of the museum');
 					routingUpdate('explore');
-				else if(datatype=='share')
+				}
+				else if(datatype=='share'){
+					titleUpdate('share with the world');
 					routingUpdate('share');
+				}
 			});
 
 
@@ -92,7 +100,9 @@ I want to <a href="#">be inspired</a>
 				return routingString;
 			}
 
-
+			function titleUpdate(name){
+				$('.title h1 a').html(name);
+			}
 
 		    function ajaxCallHandler(url,type,data,datatype,successfunction){
 		    	$.ajax({
@@ -116,21 +126,15 @@ I want to <a href="#">be inspired</a>
 		    }
 
 			function routingUpdate(currentURL){
-				alert(currentURL);
-				$('.clickbackground ').attr('display','none');
+				$('.clickbackground ').attr('style','display:none');
 				if(currentURL=='do'){
 
 				}
-
 				else if (currentURL=='beinspired'){
-						//This is read
-						//json call
-						//http://justice.openatlanta.net/tag/kids/?json=1
 						var input={'tag_slug':'kids'	};
 						var data=ajaxCallHandler('http://justice.openatlanta.net/api/get_tag_posts/','GET','jsonp',function(result,status){
-
 						});
-						console.log(data);
+						listPosts(blogData);
 				}
 				else if (currentURL.startsWith('article')){
 					
@@ -150,9 +154,9 @@ I want to <a href="#">be inspired</a>
 		});
 
 
-
+		var blogData;
 		function listPosts(data) {
-			console.log(data.posts);
+			blogData=data;
 			var Source = $("#read-template").html();
 			var Template = Handlebars.compile(Source);
 			var HTML = Template(data);
@@ -163,15 +167,29 @@ I want to <a href="#">be inspired</a>
 
 	<script type="text" id='read-template'>
 
-          {{#each posts}}
-		<div class='large-6 small-10 large-offset-3' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px">
+        {{#each posts}}
+		<div class='large-6 small-12 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px;margin-bottom:20px;">
 			<img src="{{thumbnail}}" style='width:100%'> 
 				<h1 style="margin-left:20px">{{title}}</h1>
-				<p class='large-10' style=";margin-left:15px;">{{content}}</p>
+				<div class='large-10 columns' style=";margin-left:30px;margin-right:30px">{{{content}}}</div>
 		</div>
 		{{/each}}
 	</script>
 
+	<script type="text" id='do-template'>
+
+        {{#each posts}}
+		<div class='large-6 small-12 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:200px;margin-bottom:20px;">
+			<div class='small-3 columns'>
+				<img src="{{thumbnail}}" style='width:100%'> 
+			</div>
+			<div class='small-9 columns'>
+				<h3 style="margin-left:20px">{{title}}</h3>
+				<h5></h5>
+			</div>
+		</div>
+		{{/each}}
+	</script>
 
 
 	<script id='kids-posts' src="http://justice.openatlanta.net/tag/kids/?json=1&count=10&callback=listPosts"></script>
