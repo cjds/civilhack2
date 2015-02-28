@@ -23,7 +23,7 @@
 <h1 >
 I want to <a href="#">be inspired</a>
 </h1>
-<img src='images/CCHR_LOGO_01.png' style="width:50px;height:50px;float:right;z-index:9999;margin-top:-70px;margin-right:40px">    
+<img src='images/CCHR_LOGO_01.png' style="width:50px;height:50px;float:right;z-index:9999;margin-top:-55px;margin-right:40px">    
 </div>
 
 
@@ -38,14 +38,16 @@ I want to <a href="#">be inspired</a>
 <ul>
 <li><h1><a href="#" data-type='read'> be inspired </a></h1></li>
  <li><h1><a href="#" data-type='do'> make an impact </a></h1></li>
- <li><h1><a href="#" data-type='explore'> explore in and out of the museum</a></h1></li>
- <li><h1><a href="#" data-type='share'>share with the world</a></h1></li>
+ <li><h1><a href="#" data-type='explore'> explore</a></h1></li>
+ <li><h1><a href="#" data-type='share'>share </a></h1></li>
  </ul>
 </div>
 	<script>
 		$(document).foundation();
 		$(document).ready(function() {
 			var listOfShelters = { "html_attributions" : [], "results" : [ { "geometry" : { "location" : { "lat" : "33.784599", "lng" : "-84.408773" } }, "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png", "id" : "c332f9bfeff2eb0b2235b0f7cc18a10a3c5b5c03", "name" : "Atlanta Day Shelter For Women", "place_id" : "ChIJT1hrqO0E9YgRWB3rmLTy0Ko", "reference" : "CoQBcQAAACU-pR7uvhZ_OVXdHX8Xbdw97njpysA_S7PBp8fCJA8yWDNeDkMYtc9Pm3WD0hdYXSXYKrhL9bVaW-idKsUYj02O5EQpP4FZ65yAETAlhHiobjIpRZnOWbp1V81B9GPfCuy9H7go68f4_CYdKwkZv22mfepcU6BTrw4ayzmyP32DEhCi7E2UwsiraEpGNjIrkthoGhSnOKn9yqmdb2s-2ripxwZBzPg5Hw", "scope" : "GOOGLE", "types" : [ "health", "establishment" ], "vicinity" : "655 Ethel Street Northwest, Atlanta" }, { "geometry" : { "location" : { "lat" : 33.784889, "lng" : -84.408771 } }, "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png", "id" : "be433e4373834ef51dedf3aa4fc2596ce60d165c", "name" : "Atl Day Shelter", "place_id" : "ChIJhVdrqO0E9YgRcivvtzc1oug", "reference" : "CnRjAAAAFNxWG-E_6wqWBkyB4bN3HQDsgbK7WXroTl5ba5H-17X1vpl3TaI10AOHlm_JrUPdXE_Jnm4SGMvq__7CETKu5sNo1h6hL-CfywnPpCP-YAdXx1sMD2LoSfAu644wM2iVic_au_ciP35KwDTYr88pPhIQkcbQ7jJkZL0-NnTMOygIAxoUvMWC_JYfVX4JPhSak6D2hMyCRqU", "scope" : "GOOGLE", "types" : [ "establishment" ], "vicinity" : "655 Ethel Street Northwest, Atlanta" } ], "status" : "OK" };
+
+			var listOfMonuments = { "html_attributions" : [], "results" : [ { "geometry" : { "location" : { "lat" : "33.784599", "lng" : "-84.408773" } }, "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png", "id" : "c332f9bfeff2eb0b2235b0f7cc18a10a3c5b5c03", "name" : "Martin Luther King Jr. National Historic Site", "place_id" : "ChIJT1hrqO0E9YgRWB3rmLTy0Ko", "reference" : "CoQBcQAAACU-pR7uvhZ_OVXdHX8Xbdw97njpysA_S7PBp8fCJA8yWDNeDkMYtc9Pm3WD0hdYXSXYKrhL9bVaW-idKsUYj02O5EQpP4FZ65yAETAlhHiobjIpRZnOWbp1V81B9GPfCuy9H7go68f4_CYdKwkZv22mfepcU6BTrw4ayzmyP32DEhCi7E2UwsiraEpGNjIrkthoGhSnOKn9yqmdb2s-2ripxwZBzPg5Hw", "scope" : "GOOGLE", "types" : [ "health", "establishment" ], "vicinity" : "501,17th Street Northwest, Atlanta" }, { "geometry" : { "location" : { "lat" : 33.784889, "lng" : -84.408771 } }, "icon" : "http://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png", "id" : "be433e4373834ef51dedf3aa4fc2596ce60d165c", "name" : "The Carter Center", "place_id" : "ChIJhVdrqO0E9YgRcivvtzc1oug", "reference" : "CnRjAAAAFNxWG-E_6wqWBkyB4bN3HQDsgbK7WXroTl5ba5H-17X1vpl3TaI10AOHlm_JrUPdXE_Jnm4SGMvq__7CETKu5sNo1h6hL-CfywnPpCP-YAdXx1sMD2LoSfAu644wM2iVic_au_ciP35KwDTYr88pPhIQkcbQ7jJkZL0-NnTMOygIAxoUvMWC_JYfVX4JPhSak6D2hMyCRqU", "scope" : "GOOGLE", "types" : [ "establishment" ], "vicinity" : "655,  Center Street Northwest, Atlanta" } ], "status" : "OK" };
 			History.Adapter.bind(window, 'statechange', function() {
 			  routingUpdate();
 			});
@@ -69,7 +71,7 @@ I want to <a href="#">be inspired</a>
 				e.preventDefault();
 				var datatype=$(this).attr('data-type');
 				if(datatype=='do'){
-					titleUpdate('do in my community');
+					titleUpdate('make an impact');
 					routingUpdate('do');
 				}
 				else if(datatype=='read'){
@@ -77,11 +79,11 @@ I want to <a href="#">be inspired</a>
 					routingUpdate('beinspired');
 				}
 				else if(datatype=='explore'){
-					titleUpdate('explore in and out of the museum');
+					titleUpdate('explore');
 					routingUpdate('explore');
 				}
 				else if(datatype=='share'){
-					titleUpdate('share with the world');
+					titleUpdate('share');
 					routingUpdate('share');
 				}
 			}); 
@@ -141,7 +143,7 @@ I want to <a href="#">be inspired</a>
 
 			var Source = $("#explore-template").html();
 			var Template = Handlebars.compile(Source);
-			var HTML = Template(listOfShelters);
+			var HTML = Template(listOfMonuments);
 			$('.content').html(HTML);
 				}
 				else if(currentURL=='share'){
@@ -174,13 +176,31 @@ I want to <a href="#">be inspired</a>
 	<script type="text" id='read-template'>
 
         {{#each posts}}
-		<div class='large-6 small-12 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px;margin-bottom:20px;">
+		<div class='large-6 small-10 small-offset-1 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px;margin-bottom:20px;">
 			<img src="{{thumbnail}}" style='width:100%'> 
 				<h1 style="margin-left:20px">{{title}}</h1>
-				<div class='large-10 columns' style=";margin-left:30px;margin-right:30px">{{{content}}}</div>
+				<div class='large-10 columns' style=";margin-left:5px;margin-right:5px">{{{content}}}</div>
 		</div>
 		{{/each}}
 		<div class='columns' />
+	</script>
+
+
+	<script type="text" id='explore-template'>
+        {{#each results}}
+
+		<div class='large-6 small-10 small-offset-1 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:200px;margin-bottom:20px;">
+			<div class='small-3 columns' style='margin-top:30px'>
+				<img src="{{icon}}" style='width:100%'> 
+			</div>
+			<div class='small-9 columns'>
+				<h3 style="margin-left:4px;margin-top:40px">{{name}}</h3>
+				<h5 style="margin-left:6px;">{{vicinity}}</h5>
+			</div>
+		</div>
+		<div class='columns'>
+		</div>
+		{{/each}}
 	</script>
 
 	<script type="text" id='do-template'>
@@ -201,16 +221,16 @@ I want to <a href="#">be inspired</a>
 	</script>
 
 	<script type="text" id='share-template'>
-        <div class='large-6 small-12 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px;margin-bottom:20px;">
+        <div class='large-6 small-10 small-offset-1 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px;margin-bottom:20px;">
 			<img src="shareimages/062214-NCCHR-Main-dt08.jpg" style='width:100%'> 
 				<div class='large-10 columns' style=";margin-left:30px;margin-right:30px">Facebook Twitter</div>
 		</div>
-		<div class='large-6 small-12 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px;margin-bottom:20px;">
+		<div class='large-6 small-10 small-offset-1 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px;margin-bottom:20px;">
 			<img src="shareimages/atlantacivilrightsatzl-3.jpg" style='width:100%'> 
 				<h1 style="margin-left:20px">{{title}}</h1>
 				<div class='large-10 columns' style=";margin-left:30px;margin-right:30px">Facebook Twitter</div>
 		</div>
-		<div class='large-6 small-12 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px;margin-bottom:20px;">
+		<div class='large-6 small-10 small-offset-1 large-offset-3 columns' style="box-shadow:2px 2px 2px #888;min-height:20px;background:#fff;min-height:400px;margin-bottom:20px;">
 			<img src="shareimages/insidecenter-660x375.jpg" style='width:100%'> 
 				<div class='large-10 columns' style=";margin-left:30px;margin-right:30px">Facebook Twitter</div>
 		</div>
